@@ -1,13 +1,21 @@
 from fastapi import FastAPI
-app=FastAPI(
+
+from app.api.products import router as product_router
+
+
+app = FastAPI(
     title="StockFlow API",
     description="Order and Inventory Management Platform",
-    version="0.1.0",
+    version="0.1.0"
 )
+
+
+app.include_router(product_router)
+
 
 @app.get("/health")
 def health_check():
     return {
-        "status":"healthy",
-        "service":"StockFlow API"
+        "status": "healthy",
+        "service": "stockflow-api"
     }
